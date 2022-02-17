@@ -1,0 +1,7 @@
+.bar {
+  height: 5rem;
+  &__fill {
+    background: red;
+    min-width: 1rem;
+  }
+}
