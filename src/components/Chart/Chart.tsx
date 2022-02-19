@@ -1,5 +1,3 @@
-import { stringify } from "querystring";
-import { useState } from "react";
 import Bar from "./Bar";
 import styles from "./Chart.module.scss";
 
@@ -8,57 +6,50 @@ type Props = {
     name: string;
     date: string;
     price: number;
-    category: "investment" | "house" | "food" | "education" | "entertainment";
+    category: number;
   }[];
 };
 
 const Chart = ({ expenses }: Props) => {
-  // declare categories which will be displayed on the chart
-  let categories = [{ name: "investment", amount: 0, fill: "" }];
-
-  let biggestAmount = 0;
+  const categories = [
+    {
+      name: "home",
+      fill: 0,
+      fillInPercentages: "0%",
+    },
+    {
+      name: "investment",
+      fill: 0,
+      fillInPercentages: "0%",
+    },
+    {
+      name: "food",
+      fill: 0,
+      fillInPercentages: "0%",
+    },
+    {
+      name: "education",
+      fill: 0,
+      fillInPercentages: "0%",
+    },
+    {
+      name: "entertainment",
+      fill: 0,
+      fillInPercentages: "0%",
+    },
+  ];
 
   expenses.forEach((expense) => {
-    let categoryExists = false;
-    let categoryToPush = { name: "", amount: 0, fill: "" };
-
-    // loop through categories
-    categories.forEach((category) => {
-      // if category exists, set 'categoryExists' to true and return
-      if (category.name === expense.category) {
-        categoryExists = true;
-        return;
-      }
-      // if category DOESN'T exist, create new category to push
-      categoryToPush = {
-        ...categoryToPush,
-        name: expense.category,
-        amount: expense.price,
-      };
-    });
-
-    // adding amount to the existing category
-    if (categoryExists) {
-      categories.forEach((category) => {
-        if (category.name === expense.category)
-          category.amount += expense.price;
-      });
-      return;
-    }
-
-    // adding new category to the categories list
-    categories.push(categoryToPush);
-
-    // set the biggest amount (100%)
-    categories.forEach((category) => {
-      if (category.amount > biggestAmount) biggestAmount = category.amount;
-    });
-
-    // add fill to each category
-    categories.forEach((category) => {
-      category.fill = `${Math.floor((category.amount / biggestAmount) * 100)}%`;
-    });
+    categories[expense.category].fill += expense.price;
   });
+
+  const categoriesValues = categories.map((cat) => cat.fill);
+  const maxValue = Math.max(...categoriesValues);
+
+  for (const category of categories) {
+    category.fillInPercentages =
+      Math.floor((category.fill / maxValue) * 100) + "%";
+  }
 
   return (
     <div className={styles.chart}>
@@ -66,7 +57,7 @@ const Chart = ({ expenses }: Props) => {
         <Bar
           key={category.name}
           category={category.name}
-          fill={category.fill}
+          fill={category.fillInPercentages}
         />
       ))}
     </div>
