@@ -4,7 +4,7 @@ import styles from "./TopBar.module.scss";
 
 const TopBar = () => {
   return (
-    <header>
+    <header className={styles.header}>
       <ContentWrapper>
         <div className={styles.logo}>
           <span>E</span>xpi

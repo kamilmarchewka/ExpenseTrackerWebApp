@@ -1,10 +1,4 @@
-import { useState } from "react";
 import styles from "./Bar.module.scss";
-
-type Props = {
-  fill: string;
-  category: string;
-};
 
 enum Category {
   HOME,
@@ -13,13 +7,17 @@ enum Category {
   EDUCATION,
   ENTERTAINMENT,
 }
+type Props = {
+  fill: string;
+  category: Category;
+};
 
 const Bar = ({ fill, category }: Props) => {
   console.log(fill);
 
   let icon;
   switch (category) {
-    case "home":
+    case Category.HOME:
       icon = (
         <svg
           width="34"
@@ -39,7 +37,7 @@ const Bar = ({ fill, category }: Props) => {
 
       // code block
       break;
-    case "investment":
+    case Category.INVESTMENT:
       icon = (
         <svg
           width="34"
@@ -59,7 +57,7 @@ const Bar = ({ fill, category }: Props) => {
 
       // code block
       break;
-    case "food":
+    case Category.FOOD:
       icon = (
         <svg
           width="31"
@@ -72,7 +70,7 @@ const Bar = ({ fill, category }: Props) => {
 
       // code block
       break;
-    case "education":
+    case Category.EDUCATION:
       icon = (
         <svg
           width="31"
@@ -92,7 +90,7 @@ const Bar = ({ fill, category }: Props) => {
 
       // code block
       break;
-    case "entertainment":
+    case Category.ENTERTAINMENT:
       icon = (
         <svg
           width="38"
