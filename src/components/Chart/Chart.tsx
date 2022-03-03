@@ -1,67 +1,64 @@
 import Bar from "./Bar";
 import styles from "./Chart.module.scss";
 
-enum Category {
-  HOME,
-  INVESTMENT,
-  FOOD,
-  EDUCATION,
-  ENTERTAINMENT,
-}
-
 type Props = {
   expenses: {
     name: string;
     date: string;
     price: number;
-    category: Category;
+    category: number;
   }[];
 };
 
 const Chart = ({ expenses }: Props) => {
   const categories = [
     {
-      name: Category.HOME,
+      name: "home",
       fill: 0,
       fillInPercentages: "0%",
     },
     {
-      name: Category.INVESTMENT,
+      name: "investment",
       fill: 0,
       fillInPercentages: "0%",
     },
     {
-      name: Category.FOOD,
+      name: "food",
       fill: 0,
       fillInPercentages: "0%",
     },
     {
-      name: Category.EDUCATION,
+      name: "education",
       fill: 0,
       fillInPercentages: "0%",
     },
     {
-      name: Category.ENTERTAINMENT,
+      name: "entertainment",
       fill: 0,
       fillInPercentages: "0%",
     },
   ];
 
-  console.log("from chart", expenses);
+  // add price to the certain expense category
   expenses.forEach((expense) => {
     categories[expense.category].fill += expense.price;
   });
-  console.log(categories);
 
+  categories.map((cat) => console.log("fill: ", cat.fill));
+
+  // get value for 100% fill
   const categoriesValues = categories.map((cat) => cat.fill);
-  const maxValue = Math.max(...categoriesValues);
+  let maxValue = Math.max(...categoriesValues);
 
-  console.log(maxValue);
+  console.log("max", maxValue);
 
-  // for (const category of categories) {
-  //   category.fillInPercentages =
-  //     Math.floor((category.fill / maxValue) * 100) + "%";
-  // }
+  for (const category of categories) {
+    category.fillInPercentages = maxValue
+      ? Math.floor((category.fill / maxValue) * 100) + "%"
+      : "0%";
+  }
+
+  categories.map((cat) => console.log("height: ", cat.fillInPercentages));
 
   return (
     <div className={styles.chart}>

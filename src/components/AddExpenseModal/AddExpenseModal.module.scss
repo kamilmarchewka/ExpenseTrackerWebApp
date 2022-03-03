@@ -9,11 +9,12 @@
   position: fixed;
   inset: 0;
   margin: auto;
-  max-width: 30rem;
+  width: min(94%, 30rem);
   height: fit-content;
   padding: 2.5rem;
   background: var(--clr-neutral-700);
   z-index: 1000;
+  border-radius: 0.5rem;
 
   h2 {
     text-align: center;

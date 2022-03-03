@@ -12,6 +12,7 @@ type Props = {
     category: number;
   }) => void;
 };
+
 const Modal = ({ closeModal, addExpense }: Props) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -88,9 +89,11 @@ const Modal = ({ closeModal, addExpense }: Props) => {
             </span>
 
             {/* custom radio buttons */}
-            {/* <div>
+            {/* cat --- home */}
+            <div>
               <input
-                onChange={changeCategoryHandler}
+                onChange={(e) => setCategory(e.target.value)}
+                checked={category === "0"}
                 id="cat-home"
                 value="0"
                 name="category"
@@ -113,9 +116,10 @@ const Modal = ({ closeModal, addExpense }: Props) => {
                 </svg>
               </label>
             </div>
+            {/* cat --- investment */}
             <div>
               <input
-                onChange={changeCategoryHandler}
+                onChange={(e) => setCategory(e.target.value)}
                 checked={category === "1"}
                 id="cat-investment"
                 value="1"
@@ -139,9 +143,11 @@ const Modal = ({ closeModal, addExpense }: Props) => {
                 </svg>
               </label>
             </div>
+            {/* cat --- food */}
             <div>
               <input
-                onChange={changeCategoryHandler}
+                onChange={(e) => setCategory(e.target.value)}
+                checked={category === "2"}
                 id="cat-food"
                 value="2"
                 name="category"
@@ -164,8 +170,11 @@ const Modal = ({ closeModal, addExpense }: Props) => {
                 </svg>
               </label>
             </div>
+            {/* cat --- education */}
             <div>
               <input
+                onChange={(e) => setCategory(e.target.value)}
+                checked={category === "3"}
                 id="cat-education"
                 value="3"
                 name="category"
@@ -188,9 +197,11 @@ const Modal = ({ closeModal, addExpense }: Props) => {
                 </svg>
               </label>
             </div>
+            {/* cat --- entertainment */}
             <div>
               <input
-                onChange={changeCategoryHandler}
+                onChange={(e) => setCategory(e.target.value)}
+                checked={category === "4"}
                 id="cat-entertainment"
                 value="4"
                 name="category"
@@ -212,7 +223,7 @@ const Modal = ({ closeModal, addExpense }: Props) => {
                   </defs>
                 </svg>
               </label>
-            </div> */}
+            </div>
           </div>
 
           {/* buttons */}

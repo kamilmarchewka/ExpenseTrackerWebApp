@@ -1,23 +1,14 @@
 import styles from "./Bar.module.scss";
 
-enum Category {
-  HOME,
-  INVESTMENT,
-  FOOD,
-  EDUCATION,
-  ENTERTAINMENT,
-}
 type Props = {
   fill: string;
-  category: Category;
+  category: string;
 };
 
 const Bar = ({ fill, category }: Props) => {
-  console.log(fill);
-
   let icon;
   switch (category) {
-    case Category.HOME:
+    case "home":
       icon = (
         <svg
           width="34"
@@ -37,7 +28,7 @@ const Bar = ({ fill, category }: Props) => {
 
       // code block
       break;
-    case Category.INVESTMENT:
+    case "investment":
       icon = (
         <svg
           width="34"
@@ -57,7 +48,7 @@ const Bar = ({ fill, category }: Props) => {
 
       // code block
       break;
-    case Category.FOOD:
+    case "food":
       icon = (
         <svg
           width="31"
@@ -70,7 +61,7 @@ const Bar = ({ fill, category }: Props) => {
 
       // code block
       break;
-    case Category.EDUCATION:
+    case "education":
       icon = (
         <svg
           width="31"
@@ -90,7 +81,7 @@ const Bar = ({ fill, category }: Props) => {
 
       // code block
       break;
-    case Category.ENTERTAINMENT:
+    case "entertainment":
       icon = (
         <svg
           width="38"

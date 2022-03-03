@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Chart from "./components/Chart/Chart";
 import ContentWrapper from "./components/helpers/ContentWrapper/ContentWrapper";
 import RecentExpenses from "./components/RecentExpenses/RecentExpenses";
@@ -33,20 +33,13 @@ const DUMMY_DATA = [
 function App() {
   const [expenses, setExpenses] = useState(DUMMY_DATA);
 
-  console.log("expenses from app", expenses);
-
   const onAddExpense = (expense: {
     id: number;
     name: string;
     date: string;
     price: number;
     category: number;
-  }) => {
-    setExpenses((prevExpenses) => {
-      return [...prevExpenses, expense];
-    });
-    console.log("adding expense from app.tsx", expense);
-  };
+  }) => setExpenses((prevExpenses) => [...prevExpenses, expense]);
 
   const onRemoveExpense = (expense: {
     id: number;
@@ -61,7 +54,7 @@ function App() {
       <TopBar />
       <ContentWrapper>
         <>
-          {/* <Chart expenses={expenses} /> */}
+          <Chart expenses={expenses} />
           <RecentExpenses
             addExpense={onAddExpense}
             removeExpense={onRemoveExpense}
