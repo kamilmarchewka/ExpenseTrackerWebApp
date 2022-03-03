@@ -3,6 +3,8 @@ import Chart from "./components/Chart/Chart";
 import ContentWrapper from "./components/helpers/ContentWrapper/ContentWrapper";
 import RecentExpenses from "./components/RecentExpenses/RecentExpenses";
 import TopBar from "./components/TopBar/TopBar";
+import { dummy_data } from "./dummy_data";
+
 // import logo from "./logo.svg";
 
 // we use .tsx if we want to add jsx elements to the .ts file
@@ -13,25 +15,9 @@ import TopBar from "./components/TopBar/TopBar";
 //   EDUCATION,
 //   ENTERTAINMENT,
 // }
-const DUMMY_DATA = [
-  {
-    id: Math.random(),
-    name: "New flat",
-    date: "13/03/2022",
-    price: 12,
-    category: 1,
-  },
-  {
-    id: Math.random(),
-    name: "Sky Diving",
-    date: "13/03/2022",
-    price: 2000,
-    category: 4,
-  },
-];
 
 function App() {
-  const [expenses, setExpenses] = useState(DUMMY_DATA);
+  const [expenses, setExpenses] = useState(dummy_data);
 
   const onAddExpense = (expense: {
     id: number;
