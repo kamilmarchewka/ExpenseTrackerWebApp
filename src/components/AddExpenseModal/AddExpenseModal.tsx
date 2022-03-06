@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import styles from "./AddExpenseModal.module.scss";
 
 type Props = {
+  changeMode: () => void;
   closeModal: () => void;
   addExpense: (expense: {
     id: number;
@@ -13,14 +14,13 @@ type Props = {
   }) => void;
 };
 
-const Modal = ({ closeModal, addExpense }: Props) => {
+const Modal = ({ closeModal, addExpense, changeMode }: Props) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("1");
 
   const changeNameHandler = (e: any) => setName(e.target.value);
   const changePriceHandler = (e: any) => setPrice(e.target.value);
-  const changeCategoryHandler = (e: any) => setCategory(e.target.vlaue);
 
   const submitHandler = (e: any) => {
     e.preventDefault();
@@ -45,6 +45,7 @@ const Modal = ({ closeModal, addExpense }: Props) => {
     setName("");
     setPrice("");
     setCategory("1");
+    changeMode();
   };
 
   return (
@@ -237,11 +238,15 @@ const Modal = ({ closeModal, addExpense }: Props) => {
   );
 };
 
-const AddExpenseModal = ({ closeModal, addExpense }: Props) => {
+const AddExpenseModal = ({ closeModal, addExpense, changeMode }: Props) => {
   const modalRoot: Element = document.getElementById("modals-root")!;
 
   return ReactDOM.createPortal(
-    <Modal addExpense={addExpense} closeModal={closeModal} />,
+    <Modal
+      addExpense={addExpense}
+      closeModal={closeModal}
+      changeMode={changeMode}
+    />,
     modalRoot
   );
 };

@@ -25,7 +25,7 @@ function App() {
     date: string;
     price: number;
     category: number;
-  }) => setExpenses((prevExpenses) => [...prevExpenses, expense]);
+  }) => setExpenses((prevExpenses) => [expense, ...prevExpenses]);
 
   const onRemoveExpense = (expense: {
     id: number;

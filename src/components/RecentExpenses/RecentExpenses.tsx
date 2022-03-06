@@ -34,6 +34,8 @@ const RecentExpenses = ({ expenses, removeExpense, addExpense }: Props) => {
     setIsAddModalVisible(false);
   };
 
+  console.log("expenses", expenses);
+
   return (
     <>
       <section className={styles["recent-expenses"]}>
@@ -47,7 +49,7 @@ const RecentExpenses = ({ expenses, removeExpense, addExpense }: Props) => {
           </div>
         </header>
         <ul>
-          {expenses.map((expense) => (
+          {expenses.slice(0, 5).map((expense) => (
             <ExpenseItem
               key={expense.id}
               expense={expense}
@@ -56,9 +58,16 @@ const RecentExpenses = ({ expenses, removeExpense, addExpense }: Props) => {
             />
           ))}
         </ul>
+        {expenses.length === 0 && (
+          <p className={styles["no-expenses-alert"]}>You have no expenses.</p>
+        )}
       </section>
       {isAddModalVisible && (
-        <AddExpenseModal closeModal={onCloseModal} addExpense={addExpense} />
+        <AddExpenseModal
+          closeModal={onCloseModal}
+          addExpense={addExpense}
+          changeMode={() => setIsRemoveMode(false)}
+        />
       )}
     </>
   );
