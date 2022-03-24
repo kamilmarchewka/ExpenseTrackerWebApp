@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Chart from "./components/Chart/Chart";
 import ContentWrapper from "./components/helpers/ContentWrapper/ContentWrapper";
 import RecentExpenses from "./components/RecentExpenses/RecentExpenses";
