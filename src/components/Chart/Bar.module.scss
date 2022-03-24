@@ -1,0 +1,27 @@
+.bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  &__fill-wrapper {
+    position: relative;
+    height: 13rem;
+    width: 100%;
+  }
+
+  &__fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: block;
+    background: linear-gradient(-20deg, var(--clr-purple), var(--clr-blue));
+    border-radius: 0.5rem;
+    transition: 500ms ease-out;
+  }
+
+  &__icon {
+    fill: var(--clr-neutral-400);
+  }
+}
